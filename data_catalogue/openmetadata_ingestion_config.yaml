@@ -1,0 +1,63 @@
+# OpenMetadata metadata ingestion workflow config
+# Demonstrates hands-on configuration of a dedicated Data Governance platform
+# (OpenMetadata occupies the same category as Collibra/Alation: catalogue,
+# business glossary, lineage, data quality, ownership/access tagging)
+#
+# Run with: metadata ingest -c openmetadata_ingestion_config.yaml
+# (requires an OpenMetadata server — see https://docs.open-metadata.org)
+
+source:
+  type: postgres
+  serviceName: fund-services-core-db
+  serviceConnection:
+    config:
+      type: Postgres
+      hostPort: fund-services-db.internal:5432
+      database: fund_administration
+      username: dg_service_account
+      # password supplied via secrets manager, not committed
+  sourceConfig:
+    config:
+      type: DatabaseMetadata
+      schemaFilterPattern:
+        includes:
+          - nav_calculation
+          - investor_services
+          - trade_settlement
+          - treasury_fx
+      markDeletedTables: true
+      includeTags: true
+      includeOwners: true
+
+sink:
+  type: metadata-rest
+  config: {}
+
+workflowConfig:
+  openMetadataServerConfig:
+    hostPort: https://catalogue.internal.example/api
+    authProvider: no-auth
+
+# --- Business Glossary registration ---
+# Glossary terms are linked to catalogued tables/columns below to give
+# business users a plain-English definition alongside the technical asset.
+glossaries:
+  - name: "Fund Administration Glossary"
+    terms:
+      - name: "NAV"
+        description: "Net Asset Value per share — total fund assets less liabilities, divided by shares outstanding."
+        relatedAssets: ["nav_calculation.nav_daily", "nav_calculation.nav_components"]
+      - name: "CDE"
+        description: "Critical Data Element — a data field whose error materially impacts NAV accuracy, investor reporting, or regulatory obligations."
+      - name: "AUM"
+        description: "Assets Under Management — the total market value of assets a fund manages on behalf of investors."
+        relatedAssets: ["investor_services.investor_holdings"]
+
+# --- Data Quality test suite registration (linked to dq_rules.yaml) ---
+dataQualityTestSuites:
+  - name: "NAV Calculation DQ Suite"
+    entity: "nav_calculation.nav_daily"
+    testCasesRef: "../data_quality/dq_rules.yaml#nav_daily"
+  - name: "Investor Services DQ Suite"
+    entity: "investor_services.investor_holdings"
+    testCasesRef: "../data_quality/dq_rules.yaml#investor_holdings"

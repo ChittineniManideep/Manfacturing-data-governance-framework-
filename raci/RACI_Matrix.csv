@@ -1,0 +1,10 @@
+activity,data_governance_lead,data_owner,data_steward,fund_accounting,investor_services,trading_ops,compliance_risk,technology
+Define DG policy & framework,A,C,C,C,C,C,C,I
+Approve CDE register,R,A,C,C,C,C,C,I
+Day-to-day CDE quality monitoring,C,I,R/A,C,C,C,I,I
+Maintain data catalogue & taxonomy,R/A,I,C,I,I,I,I,C
+Approve business glossary terms,C,A,R,C,C,C,I,I
+Investigate & remediate data issues,C,A,R,C,C,C,I,C
+Approve regulatory report data,I,A,C,C,C,I,R,I
+Data maturity assessment,R/A,C,C,C,C,C,C,C
+Data governance training & awareness,R/A,I,C,I,I,I,C,I

@@ -1,0 +1,45 @@
+# Domain: NAV Calculation (Tier 1 — highest CDE concentration)
+tables:
+  - name: nav_daily
+    description: "Daily Net Asset Value per share, per fund, per share class."
+    owner: "Head of Fund Accounting"
+    steward: "Fund Accounting Data Steward"
+    tags: ["CDE-Tier1", "Client-Reportable", "Regulator-Reportable"]
+    columns:
+      - name: fund_id
+        type: VARCHAR
+        businessGlossaryTerm: null
+        description: "Unique fund identifier"
+      - name: valuation_date
+        type: DATE
+      - name: nav_per_share
+        type: DECIMAL(18,6)
+        businessGlossaryTerm: "NAV"
+        isCDE: true
+        cdeTier: 1
+      - name: total_net_assets
+        type: DECIMAL(20,2)
+        isCDE: true
+        cdeTier: 1
+      - name: shares_outstanding
+        type: DECIMAL(20,4)
+        isCDE: true
+        cdeTier: 1
+    lineage:
+      upstream: ["trade_settlement.trade_positions", "treasury_fx.fx_rates_eod", "nav_calculation.nav_components"]
+      downstream: ["investor_services.investor_statements", "regulatory_reporting.aifmd_annex_iv"]
+
+  - name: nav_components
+    description: "Line-item breakdown feeding NAV: security prices, accruals, fees, corporate actions."
+    owner: "Head of Fund Accounting"
+    tags: ["CDE-Tier1"]
+    columns:
+      - name: security_price
+        isCDE: true
+        cdeTier: 1
+      - name: accrued_income
+        isCDE: true
+        cdeTier: 2
+      - name: management_fee_accrual
+        isCDE: true
+        cdeTier: 2

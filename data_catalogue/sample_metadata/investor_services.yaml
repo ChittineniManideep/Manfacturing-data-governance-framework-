@@ -1,0 +1,29 @@
+# Domain: Investor Services (Tier 1-2 — investor-impacting CDEs, includes restricted PII)
+tables:
+  - name: investor_holdings
+    description: "Investor position records — subscriptions, redemptions, AUM by investor."
+    owner: "Head of Investor Services"
+    steward: "Investor Services Data Steward"
+    tags: ["CDE-Tier1", "Restricted-PII", "Client-Reportable"]
+    columns:
+      - name: investor_id
+        isCDE: true
+        cdeTier: 1
+        accessRestricted: true
+      - name: subscription_amount
+        isCDE: true
+        cdeTier: 1
+      - name: redemption_amount
+        isCDE: true
+        cdeTier: 1
+      - name: units_held
+        isCDE: true
+        cdeTier: 1
+      - name: kyc_status
+        isCDE: true
+        cdeTier: 2
+        accessRestricted: true
+        description: "KYC/AML clearance status — restricted access, Compliance-owned monitoring"
+    lineage:
+      upstream: ["nav_calculation.nav_daily"]
+      downstream: ["regulatory_reporting.aifmd_annex_iv", "client_reporting.investor_statements"]

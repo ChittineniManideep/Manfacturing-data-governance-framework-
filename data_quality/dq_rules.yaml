@@ -1,0 +1,62 @@
+# Data Quality rule definitions, written in a testCase style compatible with
+# OpenMetadata's / Great Expectations' test-suite frameworks, so these can be
+# wired directly into the catalogue for automated daily execution.
+
+nav_daily:
+  - test_name: nav_per_share_reconciliation
+    column: nav_per_share
+    dimension: accuracy
+    rule: "abs(calculated_nav - independent_pricing_nav) <= 0.0001"
+    threshold: "0 breaches per day"
+    severity_if_breached: Critical
+
+  - test_name: total_net_assets_completeness
+    column: total_net_assets
+    dimension: completeness
+    rule: "total_net_assets IS NOT NULL AND total_net_assets > 0"
+    threshold: "100% of daily records"
+    severity_if_breached: Critical
+
+  - test_name: nav_publication_timeliness
+    column: nav_per_share
+    dimension: timeliness
+    rule: "nav_published_timestamp <= valuation_date + 1 business_day, cutoff 09:00"
+    threshold: "98% on-time publication rate"
+    severity_if_breached: High
+
+investor_holdings:
+  - test_name: subscription_bank_reconciliation
+    column: subscription_amount
+    dimension: accuracy
+    rule: "subscription_amount == bank_confirmation_amount"
+    threshold: "0 unreconciled items > 1 business day"
+    severity_if_breached: Critical
+
+  - test_name: investor_id_uniqueness
+    column: investor_id
+    dimension: uniqueness
+    rule: "COUNT(DISTINCT investor_id) == COUNT(investor_id)"
+    threshold: "100%"
+    severity_if_breached: High
+
+  - test_name: kyc_status_freshness
+    column: kyc_status
+    dimension: timeliness
+    rule: "kyc_last_review_date >= today - review_cycle_days"
+    threshold: "100% within regulatory review cycle"
+    severity_if_breached: Critical
+
+fx_rates_eod:
+  - test_name: fx_rate_source_validity
+    column: rate_source
+    dimension: validity
+    rule: "rate_source IN (approved_provider_list)"
+    threshold: "100%"
+    severity_if_breached: High
+
+  - test_name: fx_rate_outlier_check
+    column: rate
+    dimension: accuracy
+    rule: "abs(rate - prior_day_rate) / prior_day_rate <= 0.03"
+    threshold: "flag for manual review if breached"
+    severity_if_breached: Medium

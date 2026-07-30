@@ -1,0 +1,22 @@
+# Domain: Trade & Settlement
+tables:
+  - name: trade_positions
+    description: "Trade capture, matching status, and settled positions per fund."
+    owner: "Head of Trading Operations"
+    steward: "Trading Ops Data Steward"
+    tags: ["CDE-Tier1"]
+    columns:
+      - name: trade_id
+        isCDE: false
+      - name: settlement_status
+        isCDE: true
+        cdeTier: 2
+      - name: settled_quantity
+        isCDE: true
+        cdeTier: 1
+      - name: counterparty_id
+        isCDE: true
+        cdeTier: 2
+    lineage:
+      upstream: ["custody.custody_positions"]
+      downstream: ["nav_calculation.nav_daily"]

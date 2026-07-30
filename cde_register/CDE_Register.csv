@@ -1,0 +1,21 @@
+cde_id,cde_name,domain,tier,owner,steward,quality_dimensions_monitored,monitoring_frequency,quality_rule_summary,regulatory_reportable,restricted_access
+CDE-001,NAV per share,NAV Calculation,1,Head of Fund Accounting,Fund Accounting Data Steward,"Accuracy, Timeliness",Daily,Recalculated NAV must reconcile to independent pricing source within 1bp tolerance,Yes,No
+CDE-002,Total net assets,NAV Calculation,1,Head of Fund Accounting,Fund Accounting Data Steward,"Completeness, Accuracy",Daily,Must equal sum of components with zero unexplained variance,Yes,No
+CDE-003,Shares outstanding,NAV Calculation,1,Head of Fund Accounting,Fund Accounting Data Steward,Accuracy,Daily,Must reconcile to transfer agency register,Yes,No
+CDE-004,Security price,NAV Calculation,1,Head of Fund Accounting,Fund Accounting Data Steward,"Validity, Timeliness",Daily,Price must be within 5% of prior day or flagged for stale/outlier review,Yes,No
+CDE-005,Accrued income,NAV Calculation,2,Head of Fund Accounting,Fund Accounting Data Steward,Accuracy,Daily,Recalculated against accrual schedule,No,No
+CDE-006,Management fee accrual,NAV Calculation,2,Head of Fund Accounting,Fund Accounting Data Steward,Accuracy,Monthly,Recalculated against fee schedule in fund prospectus,No,No
+CDE-007,Investor ID,Investor Services,1,Head of Investor Services,Investor Services Data Steward,"Uniqueness, Completeness",Daily,Must be unique and present on all holding records,No,Yes
+CDE-008,Subscription amount,Investor Services,1,Head of Investor Services,Investor Services Data Steward,"Accuracy, Completeness",Daily,Must reconcile to bank confirmation within same-day cutoff,Yes,No
+CDE-009,Redemption amount,Investor Services,1,Head of Investor Services,Investor Services Data Steward,"Accuracy, Completeness",Daily,Must reconcile to bank confirmation within same-day cutoff,Yes,No
+CDE-010,Units held,Investor Services,1,Head of Investor Services,Investor Services Data Steward,Accuracy,Daily,Must reconcile to NAV shares outstanding at fund level,Yes,No
+CDE-011,KYC/AML status,Investor Services,2,Head of Compliance,Compliance Data Steward,"Completeness, Timeliness",Weekly,Status must be refreshed within regulatory review cycle,Yes,Yes
+CDE-012,Trade settlement status,Trade Settlement,2,Head of Trading Operations,Trading Ops Data Steward,Timeliness,Daily,Unsettled trades beyond T+2 flagged for exception review,No,No
+CDE-013,Settled quantity,Trade Settlement,1,Head of Trading Operations,Trading Ops Data Steward,Accuracy,Daily,Must reconcile to custodian confirmation,No,No
+CDE-014,Counterparty ID,Trade Settlement,2,Head of Trading Operations,Trading Ops Data Steward,Completeness,Daily,Must map to approved counterparty master list,No,No
+CDE-015,FX rate,Treasury & FX,1,Head of Treasury,Treasury Data Steward,"Accuracy, Timeliness",Daily,Rate must match published WM/Reuters 4pm fix within tolerance,Yes,No
+CDE-016,FX rate source,Treasury & FX,2,Head of Treasury,Treasury Data Steward,Validity,Daily,Source must be from approved rate provider list,No,No
+CDE-017,Custody position quantity,Custody,1,Head of Custody Operations,Custody Data Steward,Accuracy,Daily,Must reconcile to sub-custodian statement,No,No
+CDE-018,Corporate action event data,NAV Calculation,2,Head of Fund Accounting,Fund Accounting Data Steward,"Completeness, Timeliness",Event-driven,Must be captured and applied before next NAV strike,Yes,No
+CDE-019,Fund inception/base currency,Reference Data,2,Head of Product,Product Data Steward,Consistency,On change only,Must match legal fund documentation,No,No
+CDE-020,Share class fee schedule,Reference Data,2,Head of Product,Product Data Steward,Accuracy,On change only,Must match legal fund documentation and be version-controlled,No,No

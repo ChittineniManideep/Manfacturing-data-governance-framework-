@@ -1,0 +1,7 @@
+issue_id,date_raised,cde_affected,domain,severity,description,raised_by,owner,status,sla_days,date_closed,root_cause
+ISS-001,2026-06-03,NAV per share,NAV Calculation,High,Independent pricing source returned stale price for illiquid bond position,Fund Accounting Steward,Head of Fund Accounting,Closed,2,2026-06-04,Vendor feed delay
+ISS-002,2026-06-11,Settlement status,Trade Settlement,Medium,Trade matched but settlement status flag not updated in downstream feed,Trading Ops Steward,Head of Trading Operations,Closed,5,2026-06-15,Interface mapping error post system upgrade
+ISS-003,2026-06-19,KYC status,Investor Services,Critical,3 investor records exceeded KYC review cycle without refresh,Compliance Steward,Head of Compliance,Closed,1,2026-06-20,Automated review reminder not triggered
+ISS-004,2026-07-02,FX rate source,Treasury & FX,Medium,Rate sourced from non-approved provider during primary feed outage,Treasury Steward,Head of Treasury,Closed,3,2026-07-04,Fallback provider not on approved list
+ISS-005,2026-07-14,Subscription amount,Investor Services,High,Subscription amount mismatch vs bank confirmation for one investor,Investor Services Steward,Head of Investor Services,Open,2,,Under investigation — suspected FX conversion timing difference
+ISS-006,2026-07-21,Custody position quantity,Custody,Medium,Sub-custodian statement variance on one position pending reconciliation,Custody Data Steward,Head of Custody Operations,Open,5,,Pending sub-custodian response

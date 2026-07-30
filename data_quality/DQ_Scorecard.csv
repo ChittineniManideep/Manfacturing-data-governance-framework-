@@ -1,0 +1,11 @@
+reporting_month,domain,cde_count,tests_run,tests_passed,pass_rate_pct,critical_breaches,high_breaches,open_issues_carried,rag_status
+2026-06,NAV Calculation,6,186,183,98.4,0,1,1,Amber
+2026-06,Investor Services,5,155,155,100.0,0,0,0,Green
+2026-06,Trade Settlement,3,93,90,96.8,0,2,2,Amber
+2026-06,Treasury & FX,2,62,62,100.0,0,0,0,Green
+2026-06,Reference Data,2,8,8,100.0,0,0,0,Green
+2026-07,NAV Calculation,6,192,192,100.0,0,0,0,Green
+2026-07,Investor Services,5,160,158,98.8,0,1,1,Amber
+2026-07,Trade Settlement,3,96,96,100.0,0,0,0,Green
+2026-07,Treasury & FX,2,64,63,98.4,0,1,0,Amber
+2026-07,Reference Data,2,8,8,100.0,0,0,0,Green

@@ -1,0 +1,20 @@
+# Domain: Treasury & FX
+tables:
+  - name: fx_rates_eod
+    description: "End-of-day FX rates used to translate non-base-currency positions for NAV."
+    owner: "Head of Treasury"
+    steward: "Treasury Data Steward"
+    tags: ["CDE-Tier1", "Regulator-Reportable"]
+    columns:
+      - name: currency_pair
+        isCDE: false
+      - name: rate
+        isCDE: true
+        cdeTier: 1
+      - name: rate_source
+        isCDE: true
+        cdeTier: 2
+        description: "Rate provider (e.g. WM/Reuters 4pm fix) — accuracy-critical for NAV consistency"
+    lineage:
+      upstream: []
+      downstream: ["nav_calculation.nav_daily"]
